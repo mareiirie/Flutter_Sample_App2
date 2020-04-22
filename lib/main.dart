@@ -25,7 +25,8 @@ class MyPage1 extends StatelessWidget {
               context,
               new MaterialPageRoute<Null>(
                 settings: const RouteSettings(name: "/my-page-2"),
-                builder: (BuildContext context) => MyPage2(/* 必要なパラメータがあればここで渡す */),
+                builder: (BuildContext context) => MyPage2(),
+                fullscreenDialog: true, // ダイアログで表示するかどうか
               ),
             );
           },
