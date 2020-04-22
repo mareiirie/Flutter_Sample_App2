@@ -3,33 +3,31 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Page1(),
-      routes: <String, WidgetBuilder>{
-        '/page-1': (BuildContext context) => new Page1(),
-        '/page-2': (BuildContext context) => new Page2(),
-      },
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyPage1(),
     );
   }
 }
 
-class Page1 extends StatelessWidget {
+class MyPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Page 1')),
+      appBar: AppBar(title: Text('MyPage 1')),
       body: Center(
         child: RaisedButton(
-          child: Text('Go to Page 2'),
+          child: Text('Go to MyPage 2'),
           onPressed: () {
-            Navigator.pushNamed(context, '/page-2');
+            Navigator.push(
+              context,
+              new MaterialPageRoute<Null>(
+                settings: const RouteSettings(name: "/my-page-2"),
+                builder: (BuildContext context) => MyPage2(/* 必要なパラメータがあればここで渡す */),
+              ),
+            );
           },
         ),
       ),
@@ -37,7 +35,7 @@ class Page1 extends StatelessWidget {
   }
 }
 
-class Page2 extends StatelessWidget {
+class MyPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
